@@ -1,13 +1,11 @@
-import * from './errors/bad-request-error';
-import * from './errors/custom-error';
-import * from './errors/database-connection-error';
-import * from './errors/not-authorized-error';
-import * from './errors/not-found-error';
-import * from './errors/request-validation-error';
+import * as BadRequestError from './errors/bad-request-error'
+import * as CustomError from './errors/custom-error'
+import * as DatabaseConnectionError from './errors/database-connection-error'
+import * as NotAuthorizedError from './errors/not-authorized-error'
+import * as NoutFoundError from './errors/not-found-error'
+import * as RequestValidatorError from './errors/request-validation-error'
 
-import * from './middlewares/current-user';
-import * from './middlewares/error-handler';
-import * from './middlewares/require-auth';
-import * from './middlewares/validate-request';
-
-
+import * as CurrentUserMiddleware from './middlewares/current-user'
+import * as ErrorHandlerMiddleware from './middlewares/error-handler'
+import * as RequireAuthMiddleware from './middlewares/require-auth'
+import * as ValidateRequestMiddleware from './middlewares/validate-request'
