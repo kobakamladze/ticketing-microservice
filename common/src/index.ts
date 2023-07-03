@@ -18,3 +18,6 @@ export * from './events/base-listener'
 export * from './events/subjects'
 
 export * from './events/types/order-status'
+
+export * from './events/order-cancelled-event'
+export * from './events/order-crated-event'
