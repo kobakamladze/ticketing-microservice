@@ -1,42 +1,26 @@
-import "express-async-errors";
-import express from "express";
-import mongoose from "mongoose";
-import cookieSession from "cookie-session";
+import mongoose from 'mongoose'
 
-import usersRouter from "./routes/index";
-import { errorHandler } from "./middlewares/error-handilng";
-import { NotFoundError } from "./error/not-found-error";
-
-const app = express();
-app.set("trust proxy", true);
-app.use(express.json());
-app.use(
-  cookieSession({
-    signed: false,
-    secure: true,
-  })
-);
-
-app.use("/api/users", usersRouter);
-app.use("*", () => {
-  throw new NotFoundError();
-});
-
-// Error handler
-app.use(errorHandler);
+import { app } from './app'
 
 const start = async () => {
-  // Enviromental variables check
-  if (!process.env.JWT_KEY) throw new Error("ENV VARIABLE WAS NOT PROVIDED");
+    if (!process.env.JWT_KEY) {
+        throw new Error('JWT_KEY must be defined')
+    }
 
-  try {
-    await mongoose.connect("mongodb://auth-mongo-srv:27017/auth");
-    console.log("COnnected to DB...");
-  } catch (e) {
-    console.log(e);
-  }
+    if (!process.env.MONGO_URI) {
+        throw new Error('MONGO_URI must be defined')
+    }
 
-  app.listen(3000, () => console.log("Listening on PORT: 3000..."));
-};
+    try {
+        await mongoose.connect(process.env.MONGO_URI)
+        console.log('Connected to MongoDb')
+    } catch (err) {
+        console.error(err)
+    }
 
-start();
+    app.listen(3000, () => {
+        console.log('Listening on port 3000!!!!!!!!')
+    })
+}
+
+start()

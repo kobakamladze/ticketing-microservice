@@ -1,7 +1,11 @@
-import React from "react";
+import axios from 'axios'
 
-const index = () => {
-  return <div>index</div>;
-};
+const LandingPage = ({ currentUser }) => {
+    return currentUser ? (
+        <h1>You are signed in</h1>
+    ) : (
+        <h1>You are not signed in</h1>
+    )
+}
 
-export default index;
+export default LandingPage

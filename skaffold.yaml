@@ -24,3 +24,27 @@ build:
         manual:
           - src: "**/*.js"
             dest: .
+    - image: kobakamladze/ticketing-tickets
+      context: tickets
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.ts"
+            dest: .
+    - image: kobakamladze/ticketing-orders
+      context: orders
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.ts"
+            dest: .
+    - image: kobakamladze/ticketing-expiration
+      context: expiration
+      docker:
+        dockerfile: Dockerfile
+      sync:
+        manual:
+          - src: "**/*.ts"
+            dest: .
